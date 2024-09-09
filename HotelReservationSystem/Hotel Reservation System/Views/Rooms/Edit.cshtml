@@ -1,0 +1,75 @@
+﻿@model Hotel_Reservation_System.Models.Room
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit Room</h1>
+
+<h4>Room</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <!-- Added enctype -->
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Roomid" />
+
+            <div class="form-group">
+                <label asp-for="Roomnumber" class="control-label"></label>
+                <input asp-for="Roomnumber" class="form-control" />
+                <span asp-validation-for="Roomnumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Roomtype" class="control-label"></label>
+                <input asp-for="Roomtype" class="form-control" />
+                <span asp-validation-for="Roomtype" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Isavailable" class="control-label"></label>
+                <input asp-for="Isavailable" class="form-control" />
+                <span asp-validation-for="Isavailable" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Hotelid" class="control-label"></label>
+                <select asp-for="Hotelid" class="form-control" asp-items="ViewBag.Hotelid"></select>
+                <span asp-validation-for="Hotelid" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" type="file" class="form-control" /> <!-- Set input type to file -->
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+
+            <!-- Display the current image if it exists -->
+            @if (!string.IsNullOrEmpty(Model.Imagepath))
+            {
+                <div class="form-group">
+                    <label>Current Image:</label>
+                    <div>
+                        <img src="~/image/@Model.Imagepath" alt="Current Image" class="img-thumbnail" style="max-width: 200px;" />
+                    </div>
+                </div>
+            }
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

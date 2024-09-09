@@ -1,0 +1,140 @@
+﻿@model Hotel_Reservation_System.Models.User
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit User Profile</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/AssestHotel/css/bootstrap.min.css">
+    <!-- Custom Style CSS -->
+    <link rel="stylesheet" href="~/AssestHotel/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/AssestHotel/css/responsive.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+</head>
+<body class="main-layout">
+    <!-- Header Section -->
+    <header>
+        <div class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 logo_section">
+                        <div class="full">
+                            <div class="center-desk">
+                                <div class="project-name">
+                                    <a href="index.html" class="gradient-text">Hotel Reservation System</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarsExample04">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Hotel">Our Hotel</a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Room">Our Room</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="reception.html">Reception</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="payment.html">Payment</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- User Edit Profile Form Section -->
+    <div class="container mt-5">
+        <h2>Edit User Profile</h2>
+        <form method="post" action="UserEditProfile">
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <label for="UserName">User Name:</label>
+                <input type="text" id="UserName" name="UserName" class="form-control" value="@Model.UserName" required />
+            </div>
+            <div class="form-group">
+                <label for="Email">Email:</label>
+                <input type="email" id="Email" name="Email" class="form-control" value="@Model.Email" required />
+            </div>
+            <div class="form-group">
+                <label for="Phone">Phone:</label>
+                <input type="tel" id="Phone" name="Phone" class="form-control" value="@Model.Phone" required />
+            </div>
+            <div class="form-group">
+                <label for="Password">Password:</label>
+                <input type="password" id="Password" name="Password" class="form-control" value="@Model.Password" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <!-- Contact Us Section -->
+                    <div class="col-md-4">
+                        <h3>Contact Us</h3>
+                        <ul class="conta">
+                            <li><i class="fa fa-mobile" aria-hidden="true"></i> +9627 8233 6282</li>
+                            <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:alzoubiqais0@gmail.com"> alzoubiqais0@gmail.com</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Menu Links Section -->
+                    <div class="col-md-4">
+                        <h3>Menu Links</h3>
+                        <ul class="link_menu">
+                            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a asp-controller="Home" asp-action="Hotel">Our Hotel</a></li>
+                            <li><a asp-controller="Home" asp-action="Room">Our Room</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="contact.html">Contact Us</a></li>
+                            <li><a href="reception.html">Reception</a></li>
+                            <li><a href="payment.html">Payment</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Hotel Information Section -->
+                    <div class="col-md-4">
+                        <h3>Hotel Information</h3>
+                        <div class="hotel-info">
+                            <p><strong>Address:</strong> 123 Hotel Street, City, Country</p>
+                            <p><strong>Phone:</strong> +9627 8233 6282</p>
+                            <p><strong>Email:</strong> <a href="mailto:info@hotel.com">info@hotel.com</a></p>
+                            <p><strong>Website:</strong> <a href="http://www.hotelwebsite.com" target="_blank">www.hotelwebsite.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p>© 2024 Hotel Reservation System. All Rights Reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer Section -->
+    <!-- Javascript Files -->
+    <script src="~/AssestHotel/js/jquery.min.js"></script>
+    <script src="~/AssestHotel/js/bootstrap.bundle.min.js"></script>
+    <script src="~/AssestHotel/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/AssestHotel/js/custom.js"></script>
+</body>
+</html>

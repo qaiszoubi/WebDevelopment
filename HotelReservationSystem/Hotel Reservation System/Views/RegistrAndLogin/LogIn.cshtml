@@ -1,0 +1,78 @@
+﻿@model User
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>LogIn</title>
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/RegistrAndLogin/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/RegistrAndLogin/css/style.css">
+</head>
+
+<body>
+    <!-- Sing in Form -->
+    <section class="sign-in">
+        <div class="container">
+            <div class="signin-content">
+                <div class="signin-image">
+                    <figure><img src="~/RegistrAndLogin/images/hotel-isolated-tower-on-city-600nw-1234960666.webp" alt="sign up image"></figure>
+                    <a class="signup-image-link" asp-controller="RegistrAndLogin" asp-action="Register">Create an account</a>
+                </div>
+
+                <div class="signin-form">
+                    <h2 class="form-title">Sign in</h2>
+                    <form method="POST" class="register-form" id="login-form" asp-controller="RegistrAndLogin" asp-action="Login">
+                        <div class="form-group">
+                            <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                            <input type="text" name="UserName" id="your_name" placeholder="Your Name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                            <input type="password" name="Password" id="your_pass" placeholder="Password" />
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
+                            <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
+                        </div>
+                        <div class="form-group form-button">
+                            <input type="submit" name="signin" id="signin" class="form-submit" value="Log in" />
+                        </div>
+                        <!-- Guest button -->
+                        <div class="form-group form-button">
+                            <a href="@Url.Action("Index", "Home")" class="form-submit guest-button">Enter as Guest</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JS -->
+    <script src="~/RegistrAndLogin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/RegistrAndLogin/js/main.js"></script>
+
+    <!-- Custom CSS for Guest Button -->
+    <style>
+        .guest-button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff; /* لون الخلفية */
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+            .guest-button:hover {
+                background-color: #007bff; /* لون الخلفية عند المرور */
+            }
+    </style>
+</body>
+</html>

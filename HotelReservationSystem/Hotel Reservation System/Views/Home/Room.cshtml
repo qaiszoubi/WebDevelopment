@@ -1,0 +1,234 @@
+﻿@model IEnumerable<Hotel_Reservation_System.Models.Room>
+
+@{
+    ViewData["Title"] = "Rooms";
+    var userId = ViewBag.UserId; // احصل على UserId من ViewBag
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Our Rooms</title>
+    <!-- CSS Links -->
+    <link rel="stylesheet" href="~/AssestHotel/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/AssestHotel/css/style.css">
+    <link rel="stylesheet" href="~/AssestHotel/css/responsive.css">
+    <link rel="icon" href="~/AssestHotel/images/fevicon.png" type="image/gif" />
+    <style>
+        .banner_main {
+            position: relative; /* لجعل النص يظهر فوق الصورة */
+        }
+
+        .project-name {
+            position: absolute; /* لجعل النص يظهر فوق الصورة */
+            top: 50%; /* وضع النص في وسط الصورة عمودياً */
+            left: 50%; /* وضع النص في وسط الصورة أفقياً */
+            transform: translate(-50%, -50%); /* لضبط النص في المركز */
+            text-align: center; /* لجعل النص في الوسط */
+            white-space: nowrap; /* منع التفاف النص */
+            z-index: 10; /* لضمان أن النص فوق الصورة */
+            font-size: 36px; /* ضبط حجم الخط */
+            width: 100%; /* جعل النص يأخذ عرض العنصر الحاوي */
+        }
+
+        .gradient-text {
+            font-size: 36px;
+            font-weight: bold;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, red, black); /* تدرج الألوان من الأحمر إلى الأسود بشكل أفقي */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block; /* للحفاظ على عرض النص فقط */
+        }
+    </style>
+</head>
+<body class="main-layout">
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 logo_section">
+                    <div class="full">
+                        <div class="center-desk">
+                            <div class="project-name">
+                                <a href="index.html" class="gradient-text">Hotel Reservation System</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                    <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarsExample04">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                                </li>
+                                <li class="nav-item ">
+                                    <a class="nav-link" asp-controller="Home" asp-action="Hotel">Our Hotel</a>
+                                </li>
+                                <li class="nav-item active">
+                                    <a class="nav-link" asp-controller="Home" asp-action="Room">Our Room</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Home" asp-action="ContactUs">Contact Us</a>
+                                </li>
+                            </ul>
+                            <div class="navbar-nav ml-auto">
+                                @if (Context.Session.GetString("UserName") == null)
+                                {
+                                    <a href="~/RegistrAndLogin/LogIn" class="btn btn-primary btn-small">Login</a>
+                                }
+                                else
+                                {
+                                    <a href="~/RegistrAndLogin/Logout" class="btn btn-secondary">Logout</a>
+                                }
+                            </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    </header>
+    <div class="back_re">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title">
+                        <h2>Our Room</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end header inner -->
+    <div class="row" style="display: flex; flex-wrap: wrap; gap: 20px;">
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
+        @foreach (var room in Model)
+        {
+            <div class="col-md-4 col-sm-6" style="flex: 1 1 calc(33.333% - 20px); margin-bottom: 20px;">
+                @* تحقق مما إذا كانت الغرفة محجوزة *@
+                @if (room.Isavailable == "true")
+                {
+                    <div class="room" style="padding: 20px; border-radius: 12px; background-color: #f8d7da; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease;">
+                        <div class="room_img" style="margin-bottom: 15px; overflow: hidden; border-radius: 12px;">
+                            <img src="@Url.Content("~/image/" + room.Imagepath)" alt="Room Image" style="width: 100%; height: auto; border-radius: 12px; transition: transform 0.3s ease;" />
+                        </div>
+                        <div class="bed_room" style="text-align: center; background-color: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);">
+                            <h2 style="font-size:1.4rem; color: #333; font-weight: bold; margin: 0; text-transform: uppercase; letter-spacing: 1px;">
+                                @room.Roomnumber
+                            </h2>
+                            <p style="color: #666; line-height: 1.6; font-size: 0.9rem; margin: 10px 0;">
+                                @room.Roomtype
+                            </p>
+                            <p style="font-size: 1.2rem; color: red; font-weight: bold; margin: 10px 0;">
+                                This room is reserved.
+                            </p>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <a asp-controller="Home" asp-action="Reservation" asp-route-roomId="@room.Roomid" style="text-decoration: none; color: inherit;">
+                        <div class="room" style="padding: 20px; border-radius: 12px; background-color: #ffffff; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); transition: transform 0.3s ease;">
+                            <div class="room_img" style="margin-bottom: 15px; overflow: hidden; border-radius: 12px;">
+                                <img src="@Url.Content("~/image/" + room.Imagepath)" alt="Room Image" style="width: 100%; height: auto; border-radius: 12px; transition: transform 0.3s ease;" />
+                            </div>
+                            <div class="bed_room" style="text-align: center; background-color: #f9f9f9; padding: 20px; border-radius: 8px; box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);">
+                                <h2 style="font-size:1.4rem; color: #333; font-weight: bold; margin: 0; text-transform: uppercase; letter-spacing: 1px;">
+                                    @room.Roomnumber
+                                </h2>
+                                <p style="color: #666; line-height: 1.6; font-size: 0.9rem; margin: 10px 0;">
+                                    @room.Roomtype
+                                </p>
+                                <p style="font-size: 1.2rem; color: #ff6600; font-weight: bold; margin: 10px 0;">
+                                    Price: $@room.Price
+                                </p>
+                                <a href="@Url.Action("Reservation", "Home", new { roomId = room.Roomid })" style="display: inline-block; padding: 10px 20px; background-color: #ff6600; color: white; text-decoration: none; border-radius: 5px; margin-top: 10px;">Reserve Room</a>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+        }
+
+
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h3>Contact US</h3>
+                        <ul class="conta">
+                            <li><i class="fa fa-map-marker" aria-hidden="true"></i> Address</li>
+                            <li><i class="fa fa-mobile" aria-hidden="true"></i> +01 1234569540</li>
+                            <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="#"> demo@gmail.com</a></li>
+                        </ul>
+                    </div>
+                    !-- Menu Links Section -->
+                    <div class="col-md-4">
+                        <h3>Menu Links</h3>
+                        <ul class="link_menu">
+                            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a asp-controller="Home" asp-action="Hotel">Our Hotel</a></li>
+                            <li class="active"><a href="Hotel.html">Our Room</a></li>
+                            <li><a asp-controller="Home" asp-action="About">About</a></li>
+                            <li><a asp-controller="Home" asp-action="ContactUs">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h3>News letter</h3>
+                        <form class="bottom_form">
+                            <input class="enter" placeholder="Enter your email" type="text" name="Enter your email">
+                            <button class="sub_btn">subscribe</button>
+                        </form>
+                        <ul class="social_icon">
+                            <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                            <li><a href="#"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 offset-md-1">
+                            <p>
+                                © 2019 All Rights Reserved. Design by <a href="https://html.design/"> Free Html Templates</a>
+                                <br><br>
+                                Distributed by <a href="https://themewagon.com/" target="_blank">ThemeWagon</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="~/AssestHotel/js/jquery.min.js"></script>
+    <script src="~/AssestHotel/js/bootstrap.bundle.min.js"></script>
+    <script src="~/AssestHotel/js/custom.js"></script>
+</body>
+</html>

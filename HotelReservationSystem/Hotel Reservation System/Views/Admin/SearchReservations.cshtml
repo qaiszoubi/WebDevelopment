@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Reservation>
+
+@{
+    ViewData["Title"] = "Reservations Report";
+    Layout = "~/Views/Shared/_SearchReservationsLayout.cshtml";
+}
+
+<h2>Reservations between @ViewBag.StartDate and @ViewBag.EndDate</h2>
+
+<!-- زر العودة إلى صفحة الداشبورد -->
+<p>
+    <a class="btn btn-secondary ml-2" href="@Url.Action("Index", "Admin")">Back to Dashboard</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Reservation ID</th>
+            <th>Room Number</th>
+            <th>User Name</th>
+            <th>Reservation Date</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var reservation in Model)
+        {
+            <tr>
+                <td>@reservation.Reservationid</td>
+                <td>@reservation.Roomid</td>
+                <td>@reservation.UserId</td>
+                <td>@reservation.Checkindate.ToString("dd/MM/yyyy")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- نموذج البحث مع تحسينات تصميمية -->
+<form asp-action="SearchReservations" method="get" class="mt-4">
+    <div class="form-group">
+        <label for="StartDate">Start Date:</label>
+        <input type="date" id="StartDate" name="StartDate" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label for="EndDate">End Date:</label>
+        <input type="date" id="EndDate" name="EndDate" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Search</button>
+</form>

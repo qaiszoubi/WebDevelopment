@@ -1,0 +1,181 @@
+﻿@model Hotel_Reservation_System.Models.Reservation
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Basic Meta Tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Reception</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="~/AssestHotel/css/bootstrap.min.css">
+    <!-- Custom Style CSS -->
+    <link rel="stylesheet" href="~/AssestHotel/css/style.css">
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="~/AssestHotel/css/responsive.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <style>
+        .banner_main {
+            position: relative;
+        }
+
+        .project-name {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            white-space: nowrap;
+            z-index: 10;
+            font-size: 22px;
+            width: 100%;
+        }
+
+        .gradient-text {
+            font-size: 22px;
+            font-weight: bold;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, red, black);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="main-layout">
+    <!-- Header Section -->
+    <header>
+        <div class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 logo_section">
+                        <div class="full">
+                            <div class="center-desk">
+                                <div class="project-name">
+                                    <a href="index.html" class="gradient-text">Hotel Reservation System</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <nav class="navigation navbar navbar-expand-md navbar-dark">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarsExample04">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Index">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Hotel">Our Hotel</a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Room">Our Room</a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="About">About</a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Contact">Contact Us</a></li>
+                                    <li class="nav-item"><a class="nav-link active" asp-controller="Home" asp-action="Reception">Reception</a></li>
+                                    <li class="nav-item"><a class="nav-link" asp-controller="Home" asp-action="Payment">Payment</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Reception Form Section -->
+    <div class="container mt-5">
+        <h2>Reception</h2>
+        <p>Welcome, User Name: @ViewBag.UserName</p>
+
+        <form asp-action="Reservation" method="post">
+            @Html.AntiForgeryToken()
+
+            <!-- حقل مخفي لنقل قيمة Roomid إلى الـ Controller -->
+            <input type="hidden" asp-for="Roomid" />
+
+            <!-- تاريخ الدخول -->
+            <div class="form-group">
+                <label asp-for="Checkindate">Check-in Date:</label>
+                <input asp-for="Checkindate" type="date" class="form-control" />
+                <span asp-validation-for="Checkindate" class="text-danger"></span>
+            </div>
+
+            <!-- تاريخ الخروج -->
+            <div class="form-group">
+                <label asp-for="Checkoutdate">Check-out Date:</label>
+                <input asp-for="Checkoutdate" type="date" class="form-control" />
+                <span asp-validation-for="Checkoutdate" class="text-danger"></span>
+            </div>
+
+            <!-- حالة الحجز -->
+            <div class="form-group">
+                <label asp-for="Status">Status:</label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <!-- Contact Us Section -->
+                    <div class="col-md-4">
+                        <h3>Contact Us</h3>
+                        <ul class="conta">
+                            <li><i class="fa fa-mobile" aria-hidden="true"></i> +9627 8233 6282</li>
+                            <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:alzoubiqais0@gmail.com"> alzoubiqais0@gmail.com</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Menu Links Section -->
+                    <div class="col-md-4">
+                        <h3>Menu Links</h3>
+                        <ul class="link_menu">
+                            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a asp-controller="Home" asp-action="Hotel">Our Hotel</a></li>
+                            <li><a asp-controller="Home" asp-action="Room">Our Room</a></li>
+                            <li><a asp-controller="Home" asp-action="About">About</a></li>
+                            <li><a asp-controller="Home" asp-action="Contact">Contact Us</a></li>
+                            <li><a asp-controller="Home" asp-action="Reception">Reception</a></li>
+                            <li><a asp-controller="Home" asp-action="Payment">Payment</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Hotel Information Section -->
+                    <div class="col-md-4">
+                        <h3>Hotel Information</h3>
+                        <div class="hotel-info">
+                            <p><strong>Address:</strong> 123 Hotel Street, City, Country</p>
+                            <p><strong>Phone:</strong> +9627 8233 6282</p>
+                            <p><strong>Email:</strong> <a href="mailto:info@hotel.com">info@hotel.com</a></p>
+                            <p><strong>Website:</strong> <a href="http://www.hotelwebsite.com" target="_blank">www.hotelwebsite.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <p>© 2024 Hotel Reservation System. All Rights Reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer Section -->
+    <!-- Javascript Files -->
+    <script src="~/AssestHotel/js/jquery.min.js"></script>
+    <script src="~/AssestHotel/js/bootstrap.bundle.min.js"></script>
+    <script src="~/AssestHotel/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/AssestHotel/js/custom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+</body>
+</html>

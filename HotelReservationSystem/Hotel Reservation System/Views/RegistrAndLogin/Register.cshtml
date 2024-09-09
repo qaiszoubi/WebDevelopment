@@ -1,0 +1,217 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Register";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - My Website</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="~/RegistrAndLogin/fonts/material-icon/css/material-design-iconic-font.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="~/RegistrAndLogin/css/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #e0e0e0;
+        }
+
+        .signup {
+            display: flex;
+            width: 90%;
+            max-width: 1000px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .signup-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .signup-form {
+            width: 50%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .form-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+            .form-group label {
+                position: absolute;
+                top: 50%;
+                left: 15px;
+                transform: translateY(-50%);
+                color: #666;
+                font-size: 16px;
+                pointer-events: none;
+                transition: 0.3s;
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 15px;
+                padding-left: 50px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;
+                color: #333;
+                box-sizing: border-box;
+                transition: border-color 0.3s;
+            }
+
+                .form-group input:focus {
+                    border-color: #007bff;
+                    outline: none;
+                }
+
+                    .form-group input:focus + label {
+                        color: #007bff;
+                        font-size: 12px;
+                        top: -10px;
+                    }
+
+            .form-group .text-danger {
+                color: #e74c3c;
+                font-size: 14px;
+            }
+
+            .form-group .agree-term {
+                margin-right: 10px;
+            }
+
+            .form-group .label-agree-term {
+                font-size: 14px;
+            }
+
+        .form-button {
+            text-align: center;
+        }
+
+        .form-submit {
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+            .form-submit:hover {
+                background-color: #0056b3;
+            }
+
+        .signup-image {
+            width: 50%;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+            .signup-image img {
+                max-width: 100%;
+                border-radius: 8px;
+            }
+
+        .signup-image-link {
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+            .signup-image-link:hover {
+                text-decoration: underline;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="main">
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign Up</h2>
+                        <form method="post" asp-action="Register">
+                            <div class="form-group">
+                                <input type="text" asp-for="UserName" id="UserName" placeholder="Your Name" />
+                                <label for="UserName"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="password" asp-for="Password" id="Password" placeholder="Password" />
+                                <label for="Password"><i class="zmdi zmdi-lock"></i></label>
+                                <span asp-validation-for="Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" asp-for="Email" id="Email" placeholder="Your Email" />
+                                <label for="Email"><i class="zmdi zmdi-email"></i></label>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" asp-for="Phone" id="Phone" placeholder="Phone" />
+                                <label for="Phone"><i class="zmdi zmdi-phone"></i></label>
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" asp-for="UserRole" id="UserRole" placeholder="User Role" />
+                                <label for="UserRole"><i class="zmdi zmdi-role"></i></label>
+                                <span asp-validation-for="UserRole" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                                <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in <a href="#" class="term-service">Terms of Service</a></label>
+                            </div>
+                            <div class="form-button">
+                                <input type="submit" class="form-submit" value="Register" />
+                            </div>
+                        </form>
+                    </div>
+                    <div class="signup-image">
+                        <figure><img src="~/RegistrAndLogin/images/png-transparent-5-star-hotel-oldfashioned-frames-motel-room-1-hotel-resort-sea.png" alt="Sign up image"></figure>
+                        <a href="#" class="signup-image-link">I am already a member</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JS -->
+    <script src="~/RegistrAndLogin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/RegistrAndLogin/js/main.js"></script>
+</body>
+</html>

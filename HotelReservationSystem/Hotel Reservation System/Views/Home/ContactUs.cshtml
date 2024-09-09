@@ -1,0 +1,231 @@
+﻿@model IEnumerable<Hotel_Reservation_System.Models.User>
+
+@{
+    ViewData["Title"] = "Contact Us";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <!-- site metas -->
+    <title>Contact Us</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="~/AssestHotel/css/bootstrap.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="~/AssestHotel/css/style.css">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="~/AssestHotel/css/responsive.css">
+    <!-- fevicon -->
+    <link rel="icon" href="~/AssestHotel/images/fevicon.png" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="~/AssestHotel/css/jquery.mCustomScrollbar.min.css">
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <style>
+        .banner_main {
+            position: relative; /* لجعل النص يظهر فوق الصورة */
+        }
+
+        .project-name {
+            position: absolute; /* لجعل النص يظهر فوق الصورة */
+            top: 50%; /* وضع النص في وسط الصورة عمودياً */
+            left: 50%; /* وضع النص في وسط الصورة أفقياً */
+            transform: translate(-50%, -50%); /* لضبط النص في المركز */
+            text-align: center; /* لجعل النص في الوسط */
+            white-space: nowrap; /* منع التفاف النص */
+            z-index: 10; /* لضمان أن النص فوق الصورة */
+            font-size: 36px; /* ضبط حجم الخط */
+            width: 100%; /* جعل النص يأخذ عرض العنصر الحاوي */
+        }
+
+        .gradient-text {
+            font-size: 36px;
+            font-weight: bold;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, red, black); /* تدرج الألوان من الأحمر إلى الأسود بشكل أفقي */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block; /* للحفاظ على عرض النص فقط */
+        }
+    </style>
+</head>
+<body class="main-layout">
+    <!-- loader  -->
+    <div class="loader_bg">
+        <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+    </div>
+    <!-- end loader -->
+    <!-- header -->
+    <header>
+        <!-- header inner -->
+        <div class="header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 logo_section">
+                        <div class="full">
+                            <div class="center-desk">
+                                <div class="project-name">
+                                    <a href="index.html" class="gradient-text">Hotel Reservation System</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                        <nav class="navigation navbar navbar-expand-md navbar-dark ">
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarsExample04">
+                                <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-controller="Home" asp-action="Hotel">Our Hotel</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-controller="Home" asp-action="Room">Our Room</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-controller="Home" asp-action="About">About</a>
+                                    </li>
+                                    <li class="nav-item active">
+                                        <a class="nav-link" href="contact.html">Contact Us</a>
+                                    </li>
+                                </ul>
+                                <div class="navbar-nav ml-auto">
+                                    @if (Context.Session.GetString("UserName") == null)
+                                    {
+                                        <a href="~/RegistrAndLogin/LogIn" class="btn btn-primary btn-small">Login</a>
+                                    }
+                                    else
+                                    {
+                                        <a href="~/RegistrAndLogin/Logout" class="btn btn-secondary">Logout</a>
+                                    }
+                                </div>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- end header inner -->
+    <!-- end header -->
+    <div class="back_re">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title">
+                        <h2>Contact Us</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- contact -->
+    <div class="contact">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="contact_info">
+                        <h3>Get In Touch</h3>
+                        <p>If you have any questions or need assistance, feel free to reach out to us. We're here to help you!</p>
+                        <ul>
+                            <li><i class="fa fa-map-marker" aria-hidden="true"></i> 123 Hotel Street, City, Country</li>
+                            <li><i class="fa fa-phone" aria-hidden="true"></i> +9627 8233 6282</li>
+                            <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:info@hotel.com">info@hotel.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="contact_form">
+                        <form asp-action="ContactUs" method="post">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" name="Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="Email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea class="form-control" id="message" name="Message" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end contact -->
+    <!-- footer -->
+    <footer>
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <!-- Contact Us Section -->
+                    <div class="col-md-4">
+                        <h3>Contact Us</h3>
+                        <ul class="conta">
+                            <li><i class="fa fa-mobile" aria-hidden="true"></i> +9627 8233 6282</li>
+                            <li><i class="fa fa-envelope" aria-hidden="true"></i><a href="mailto:alzoubiqais0@gmail.com"> alzoubiqais0@gmail.com</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Menu Links Section -->
+                    <div class="col-md-4">
+                        <h3>Menu Links</h3>
+                        <ul class="link_menu">
+                            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a asp-controller="Home" asp-action="Hotel">Our Hotel</a></li>
+                            <li><a asp-controller="Home" asp-action="Room">Our Room</a></li>
+                            <li><a asp-controller="Home" asp-action="About">About</a></li>
+                            <li class="active"><a asp-controller="Home" asp-action="ContactUs">Contact Us</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Hotel Information Section -->
+                    <div class="col-md-4">
+                        <h3>Hotel Information</h3>
+                        <div class="hotel-info">
+                            <p><strong>Address:</strong> 123 Hotel Street, City, Country</p>
+                            <p><strong>Phone:</strong> +9627 8233 6282</p>
+                            <p><strong>Email:</strong> <a href="mailto:info@hotel.com">info@hotel.com</a></p>
+                            <p><strong>Website:</strong> <a href="http://www.hotelwebsite.com" target="_blank">www.hotelwebsite.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>&copy; 2024 Hotel Reservation System. All Rights Reserved.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- end footer -->
+    <!-- javascript -->
+    <script src="~/AssestHotel/js/jquery.min.js"></script>
+    <script src="~/AssestHotel/js/bootstrap.min.js"></script>
+    <script src="~/AssestHotel/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="~/AssestHotel/js/custom.js"></script>
+</body>
+</html>

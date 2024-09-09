@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Reports";
+    Layout = "~/Views/Shared/_ReportsLayout.cshtml";
+
+}
+
+<h2>Revenue and Reservation Reports</h2>
+
+<p>
+    <a class="btn btn-secondary ml-2" href="@Url.Action("Index", "Admin")">Back to Dashboard</a>
+</p>
+
+
+@if (ViewBag.MonthlyRevenue == null || ViewBag.AnnualRevenue == null ||
+   ViewBag.MonthlyReservations == null || ViewBag.AnnualReservations == null ||
+   ViewBag.TotalUsers == null)
+{
+    <div class="alert alert-danger" role="alert">
+        There was an error loading the report data.
+    </div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Report Type</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Monthly Revenue</td>
+                <td>@ViewBag.MonthlyRevenue.ToString("C")</td>
+            </tr>
+            <tr>
+                <td>Annual Revenue</td>
+                <td>@ViewBag.AnnualRevenue.ToString("C")</td>
+            </tr>
+            <tr>
+                <td>Monthly Reservations</td>
+                <td>@ViewBag.MonthlyReservations</td>
+            </tr>
+            <tr>
+                <td>Annual Reservations</td>
+                <td>@ViewBag.AnnualReservations</td>
+            </tr>
+            <tr>
+                <td>Total Users</td>
+                <td>@ViewBag.TotalUsers</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="mt-4">
+        <!-- Button to Export PDF -->
+        <form asp-action="ExportReportToPdf" method="post" style="display: inline;">
+            <button type="submit" class="btn btn-danger">Export to PDF</button>
+        </form>
+
+        <!-- Button to Export Excel -->
+        <form asp-action="ExportReportToExcel" method="post" style="display: inline;">
+            <button type="submit" class="btn btn-success">Export to Excel</button>
+        </form>
+    </div>
+}

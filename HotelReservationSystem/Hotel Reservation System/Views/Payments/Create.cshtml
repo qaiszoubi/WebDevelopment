@@ -1,0 +1,50 @@
+﻿@model Hotel_Reservation_System.Models.Payment
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>Payment</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Reservationid" class="control-label"></label>
+                <select asp-for="Reservationid" class ="form-control" asp-items="ViewBag.Reservationid"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Paymentdate" class="control-label"></label>
+                <input asp-for="Paymentdate" class="form-control" />
+                <span asp-validation-for="Paymentdate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Paymentmethod" class="control-label"></label>
+                <input asp-for="Paymentmethod" class="form-control" />
+                <span asp-validation-for="Paymentmethod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cardnumber" class="control-label"></label>
+                <input asp-for="Cardnumber" class="form-control" />
+                <span asp-validation-for="Cardnumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

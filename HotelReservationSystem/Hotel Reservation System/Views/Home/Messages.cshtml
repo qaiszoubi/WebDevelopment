@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Hotel_Reservation_System.Models.ContactMessage>
+
+@{
+    ViewData["Title"] = "Admin - Messages";
+    Layout = "~/Views/Shared/_MessagesLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2>Messages</h2>
+
+    <p>
+        <a class="btn btn-secondary" href="@Url.Action("Index", "Admin")">Back to Dashboard</a>
+    </p>
+
+    @if (Model != null && Model.Any())
+    {
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Sent Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var message in Model)
+                {
+                    <tr>
+                        <td>@message.Name</td>
+                        <td>@message.Email</td>
+                        <td>@message.Message</td>
+                        <td>@message.SentDate.ToString("MM/dd/yyyy HH:mm")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p class="alert alert-info">No messages to display.</p>
+    }
+</div>

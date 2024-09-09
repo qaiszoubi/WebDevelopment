@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Hotel_Reservation_System.Models.Room>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+    <a class="btn btn-secondary ml-2" href="@Url.Action("Index", "Admin")">Back to Dashboard</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Roomnumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Roomtype)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Isavailable)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagepath)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hotel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Roomnumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Roomtype)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Isavailable)
+                </td>
+                <td>
+                    <img src="@Url.Content("~/image/" + item.Imagepath)" asp-append-version="true" style="border-radius:20%;" width="100" height="100" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hotel.Hotelid)
+                </td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-action="Edit" asp-route-id="@item.Roomid">Edit</a> |
+                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.Roomid">Details</a> |
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Roomid">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

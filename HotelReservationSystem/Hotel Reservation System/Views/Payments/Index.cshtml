@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Hotel_Reservation_System.Models.Payment>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a class="btn btn-primary" asp-action="Create">Create New</a>
+    <a class="btn btn-secondary ml-2" href="@Url.Action("Index", "Admin")">Back to Dashboard</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Paymentdate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Paymentmethod)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cardnumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Reservation)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paymentdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Paymentmethod)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cardnumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reservation.Reservationid)
+                </td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-action="Edit" asp-route-id="@item.Paymentid">Edit</a> |
+                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.Paymentid">Details</a> |
+                    <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Paymentid">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
